@@ -16,6 +16,7 @@ services:
 
   spark-master:
     image: docker.io/bitnami/spark:latest
+    user: root
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
