@@ -100,21 +100,23 @@ services:
     depends_on:
       - zoo1
 
-  cassandra:
-    image: cassandra:latest
-    container_name: cassandra-container
-    ports:
-      - "9042:9042"
-    environment:
-      - CASSANDRA_USER=admin
-      - CASSANDRA_PASSWORD=admin
-    volumes:
-      - cassandra-data:/var/lib/cassandra
-volumes:
+#  cassandra:
+#    image: cassandra:latest
+#    container_name: cassandra-container
+#    ports:
+#      - "9042:9042"
+#    environment:
+#      - CASSANDRA_USER=admin
+#      - CASSANDRA_PASSWORD=admin
+#    volumes:
+#      - cassandra-data:/var/lib/cassandra
+
+#volumes:
 #  minio_data:
 #    driver: local
-  cassandra-data:
-    driver: local
+
+#  cassandra-data:
+#    driver: local
 
 networks:
   common:
