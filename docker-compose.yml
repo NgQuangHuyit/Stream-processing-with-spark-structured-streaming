@@ -1,18 +1,18 @@
 version: '2'
 
 services:
-  minio:
-    image: 'bitnami/minio:2024'
-    ports:
-      - '9000:9000'
-      - '9001:9001'
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=miniosecret
-    networks:
-      - common
-    volumes:
-      - 'minio_data:/bitnami/minio/data'
+#  minio:
+#    image: 'bitnami/minio:2024'
+#    ports:
+#      - '9000:9000'
+#      - '9001:9001'
+#    environment:
+#      - MINIO_ROOT_USER=minio
+#      - MINIO_ROOT_PASSWORD=miniosecret
+#    networks:
+#      - common
+#    volumes:
+#      - 'minio_data:/bitnami/minio/data'
 
   spark-master:
     image: docker.io/bitnami/spark:latest
@@ -99,8 +99,21 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     depends_on:
       - zoo1
+
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra-container
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=admin
+    volumes:
+      - cassandra-data:/var/lib/cassandra
 volumes:
-  minio_data:
+#  minio_data:
+#    driver: local
+  cassandra-data:
     driver: local
 
 networks:
